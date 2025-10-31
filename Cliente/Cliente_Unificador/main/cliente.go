@@ -2,24 +2,36 @@ package main
 
 import (
 	"context"
-	"fmt"
+	"time"
 
+	"cliente.local/unificador/controladores"
 	interfaces "cliente.local/unificador/fachada"
-	bridges "cliente.local/unificador/fachada/puentes"
-	ui "cliente.local/unificador/vistas"
+	"cliente.local/unificador/fachada/puentes"
+	repositorios "cliente.local/unificador/repositorio"
+	"cliente.local/unificador/servicios"
+	"cliente.local/unificador/vistas"
 )
 
 func main() {
-	fmt.Println("=== Cliente Unificador ===")
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Minute)
+	defer cancel()
 
-	ctx := context.Background()
+	apiURL := "http://localhost:3000/users"
 
-	// Módulos disponibles: gRPC y RMI
-	modulos := []interfaces.ClienteModulo{
-		&bridges.ModuloGRPC{},
-		&bridges.ModuloRMI{},
+	// Inyección de dependencias
+	repo := repositorios.NuevoRepoLoginJSON(apiURL)
+	service := servicios.NuevoServicioLogin(repo)
+	controller := controladores.NuevoLoginController(service)
+
+	// Mostrar login
+	if !vistas.MostrarLogin(controller) {
+		return
 	}
 
-	// Ejecutar menú principal
-	ui.MostrarMenuUnificado(modulos, ctx)
+	// Configurar módulos
+	modulos := []interfaces.IModulo{
+		&puentes.ModuloGRPC{},
+	}
+
+	vistas.MostrarMenuPrincipal(ctx, modulos)
 }

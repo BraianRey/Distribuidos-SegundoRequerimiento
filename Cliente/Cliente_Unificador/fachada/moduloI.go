@@ -2,7 +2,8 @@ package interfaces
 
 import "context"
 
-type ClienteModulo interface {
+// IModulo define el comportamiento común de todos los módulos del sistema.
+type IModulo interface {
 	Nombre() string
 	Iniciar(ctx context.Context) error
 }
