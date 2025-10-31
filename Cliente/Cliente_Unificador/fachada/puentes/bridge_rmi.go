@@ -2,7 +2,6 @@ package bridges
 
 import (
 	"context"
-	"fmt"
 )
 
 type ModuloRMI struct{}
@@ -12,7 +11,7 @@ func (m *ModuloRMI) Nombre() string {
 }
 
 func (m *ModuloRMI) Iniciar(ctx context.Context) error {
-	fmt.Println("Módulo RMI aún no implementado.")
+	// IMPLEMENTAR LÓGICA DEL CLIENTE RMI AQUÍ
 	return nil
 }
 

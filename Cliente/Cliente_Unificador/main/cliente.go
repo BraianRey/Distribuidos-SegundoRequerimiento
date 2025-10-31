@@ -14,7 +14,7 @@ func main() {
 
 	ctx := context.Background()
 
-	// Módulos disponibles: gRPC y RMI (o más en el futuro)
+	// Módulos disponibles: gRPC y RMI
 	modulos := []interfaces.ClienteModulo{
 		&bridges.ModuloGRPC{},
 		&bridges.ModuloRMI{},
