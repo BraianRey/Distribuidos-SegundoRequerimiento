@@ -8,14 +8,13 @@ import (
 	pb "servidor.local/grpc-servidorcanciones/serviciosCanciones"
 )
 
-// controlador de canciones
-// contiene la fachada para acceder a la lógica de negocio
+// Contiene la fachada para acceder a la lógica de negocio
 type CancionesController struct {
 	pb.UnimplementedCancionesServiceServer
 	fachada *fachada.FachadaCanciones
 }
 
-// constructor del controlador de canciones
+// Constructor del controlador de canciones
 func NuevoCancionesController(f *fachada.FachadaCanciones) *CancionesController {
 	return &CancionesController{fachada: f}
 }
@@ -33,7 +32,7 @@ func (c *CancionesController) ListarGeneros(ctx context.Context, in *emptypb.Emp
 	return &pb.ListaGeneros{Generos: generos}, nil
 }
 
-// ListarCancionesPorGenero devuelve las canciones de un género específico
+// Devuelve las canciones de un género específico
 func (c *CancionesController) ListarCancionesPorGenero(ctx context.Context, in *pb.GeneroId) (*pb.ListaCanciones, error) {
 	var canciones []*pb.Cancion
 	for _, cgo := range c.fachada.ListarCancionesPorGenero(in.Id) {
@@ -53,7 +52,7 @@ func (c *CancionesController) ListarCancionesPorGenero(ctx context.Context, in *
 	return &pb.ListaCanciones{Canciones: canciones}, nil
 }
 
-// ObtenerDetallesCancion devuelve los detalles de una canción específica
+// Devuelve los detalles de una canción específica
 func (c *CancionesController) ObtenerDetallesCancion(ctx context.Context, in *pb.CancionId) (*pb.Cancion, error) {
 	cgo := c.fachada.ObtenerDetallesCancion(in.Id)
 	if cgo == nil {

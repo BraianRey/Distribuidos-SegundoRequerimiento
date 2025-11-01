@@ -9,7 +9,7 @@ import (
 	pb "servidor.local/grpc-servidorstream/serviciosStreaming"
 )
 
-// RecibirCancion: recibe los fragmentos del stream y los escribe al pipe.
+// Recibe los fragmentos del stream y los escribe al pipe.
 func RecibirCancion(stream pb.AudioService_EnviarCancionMedianteStreamClient, writer *io.PipeWriter, canalStop <-chan struct{}, canalSincronizacion chan struct{}) {
 	noFragmento := 0
 	var once sync.Once // para cerrar writer solo 1 vez

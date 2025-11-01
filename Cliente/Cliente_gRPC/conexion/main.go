@@ -17,9 +17,9 @@ func RunClienteGRPC() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	// asegurar el cierre de la conexión al finalizar main
+	// Asegurar el cierre de la conexión al finalizar main
 	defer connStream.Close()
-	// crear cliente gRPC para el servicio de streaming
+	// Crear cliente gRPC para el servicio de streaming
 	clientStream := pbStream.NewAudioServiceClient(connStream)
 
 	// Conexión al servidor de canciones
@@ -27,14 +27,14 @@ func RunClienteGRPC() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	// asegurar el cierre de la conexión al finalizar main
+	// Asegurar el cierre de la conexión al finalizar main
 	defer connCancion.Close()
-	// crear cliente gRPC para el servicio de canciones
+	// Crear cliente gRPC para el servicio de canciones
 	clientCancion := pbCancion.NewCancionesServiceClient(connCancion)
 
 	// Context con timeout para las operaciones de la aplicación
-	ctx, cancel := context.WithTimeout(context.Background(), 20*time.Minute)
-	// asegurar la cancelación del context al finalizar main
+	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Minute)
+	// Asegurar la cancelación del context al finalizar main
 	defer cancel()
 
 	// Mostrar menú principal

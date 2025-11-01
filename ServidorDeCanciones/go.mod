@@ -8,6 +8,7 @@ require (
 )
 
 require (
+	github.com/tcolgate/mp3 v0.0.0-20170426193717-e79c5a46d300 // direct
 	golang.org/x/net v0.41.0 // indirect
 	golang.org/x/sys v0.33.0 // indirect
 	golang.org/x/text v0.26.0 // indirect

@@ -12,7 +12,7 @@ import (
 	pbStream "servidor.local/grpc-servidorstream/serviciosStreaming"
 )
 
-// ReproducirCancion maneja el flujo de reproducción: solicita el stream, lanza goroutines y controla la parada.
+// Maneja el flujo de reproducción: solicita el stream, lanza goroutines y controla la parada.
 func ReproducirCancion(clientStream pbStream.AudioServiceClient, detalle *pbCancion.Cancion, ctx context.Context, reader *bufio.Reader) error {
 	stream, err := clientStream.EnviarCancionMedianteStream(ctx, &pbStream.PeticionDTO{Titulo: detalle.Titulo})
 	if err != nil {

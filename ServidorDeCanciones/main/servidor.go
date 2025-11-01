@@ -5,6 +5,7 @@ import (
 	"net"
 
 	"google.golang.org/grpc"
+	"servidor.local/grpc-servidorcanciones/api"
 	"servidor.local/grpc-servidorcanciones/controladores"
 	"servidor.local/grpc-servidorcanciones/fachada"
 	pb "servidor.local/grpc-servidorcanciones/serviciosCanciones"
@@ -13,17 +14,22 @@ import (
 const addr = ":9000"
 
 func main() {
-	// inicializar la fachada y el servidor gRPC
+	// Inicializar la fachada y el servidor gRPC
 	fachadaCanciones := fachada.NuevaFachadaCanciones()
 
-	// iniciar el servidor gRPC
+	// Iniciar servidor HTTP para registrar canciones via Postman (API)
+	go func() {
+		api.StartHTTP(fachadaCanciones, ":8080")
+	}()
+
+	// Iniciar el servidor gRPC
 	lis, err := net.Listen("tcp", addr)
 	if err != nil {
 		log.Fatalf("No se pudo escuchar en %s: %v", addr, err)
 	}
-	// crear servidor gRPC y registrar el servicio de canciones
+	// Crear servidor gRPC y registrar el servicio de canciones
 	grpcServer := grpc.NewServer()
-	// registrar el servicio de canciones con su controlador
+	// Registrar el servicio de canciones con su controlador
 	pb.RegisterCancionesServiceServer(grpcServer, controladores.NuevoCancionesController(fachadaCanciones))
 
 	log.Printf("ServidorDeCanciones escuchando en %s (gRPC)", addr)

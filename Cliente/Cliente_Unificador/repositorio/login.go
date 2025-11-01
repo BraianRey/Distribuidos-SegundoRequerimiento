@@ -9,14 +9,17 @@ import (
 	"cliente.local/unificador/modelos"
 )
 
+// Maneja la autenticación contra un servidor JSON
 type RepoLoginJSON struct {
 	URL string
 }
 
+// Crea una nueva instancia de RepoLoginJSON
 func NuevoRepoLoginJSON(url string) *RepoLoginJSON {
 	return &RepoLoginJSON{URL: url}
 }
 
+// Busca un usuario por username y password
 func (r *RepoLoginJSON) BuscarUsuario(username, password string) (*modelos.Usuario, error) {
 	resp, err := http.Get(r.URL)
 	if err != nil {

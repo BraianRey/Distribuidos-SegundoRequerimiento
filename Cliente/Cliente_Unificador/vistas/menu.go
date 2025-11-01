@@ -7,6 +7,7 @@ import (
 	interfaces "cliente.local/unificador/fachada"
 )
 
+// Despliega el menú principal y maneja la selección de módulos
 func MostrarMenuPrincipal(ctx context.Context, modulos []interfaces.IModulo) {
 	for {
 		fmt.Println("\n=== MENÚ PRINCIPAL ===")

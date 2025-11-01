@@ -15,7 +15,7 @@ import (
 var speakerInitOnce sync.Once
 var speakerSampleRate beep.SampleRate // se usa para resampling si es necesario
 
-// DecodificarReproducir: decodifica desde el reader y reproduce hasta EOF o hasta que llegue stop.
+// Decodifica desde el reader y reproduce hasta EOF o hasta que llegue stop.
 // Usa un sync.Once local para cerrar canalSincronizacion solo 1 vez y evita panics por double close.
 // Realiza resampling si el sampleRate de la canción no coincide con el usado en speaker.
 func DecodificarReproducir(reader io.Reader, canalStop <-chan struct{}, canalSincronizacion chan struct{}) {
@@ -41,34 +41,34 @@ func DecodificarReproducir(reader io.Reader, canalStop <-chan struct{}, canalSin
 	})
 
 	var streamerToPlay beep.Streamer = streamer
-	// si el sampleRate del audio no coincide con el del speaker, hacer resampling
+	// Si el sampleRate del audio no coincide con el del speaker, hacer resampling
 	if format.SampleRate != speakerSampleRate {
 		streamerToPlay = beep.Resample(4, format.SampleRate, speakerSampleRate, streamer)
 	}
 
-	// callback que se dispara al terminar la reproducción natural
+	// Callback que se dispara al terminar la reproducción natural
 	done := make(chan struct{})
 	speaker.Play(beep.Seq(streamerToPlay, beep.Callback(func() {
 		close(done)
 	})))
 
-	// asegurar que canalSincronizacion solo se cierre una vez
+	// Asegurar que canalSincronizacion solo se cierre una vez
 	var once sync.Once
 	closeSync := func() { once.Do(func() { safeClose(canalSincronizacion) }) }
 
-	// goroutine que escucha stop o finalización natural
+	// Goroutine que escucha stop o finalización natural
 	go func() {
 		select {
-		// si llega stop, limpiar y cerrar streamer
+		// Si llega stop, limpiar y cerrar streamer
 		case <-canalStop:
 			log.Println("DecodificarReproducir: stop recibido, deteniendo reproducción.")
-			speaker.Clear()      // limpiar cola de reproducción
-			_ = streamer.Close() // cerrar streamer para liberar recursos
+			speaker.Clear()      // Limpiar cola de reproducción
+			_ = streamer.Close() // Cerrar streamer para liberar recursos
 			closeSync()
-		// si termina naturalmente, cerrar canalSincronizacion
+		// Si termina naturalmente, cerrar canalSincronizacion
 		case <-done:
 			log.Println("DecodificarReproducir: reproducción terminó naturalmente.")
-			closeSync() // cerrar canalSincronizacion
+			closeSync() // Cerrar canalSincronizacion
 		}
 	}()
 }
@@ -78,7 +78,7 @@ func safeClose(ch chan struct{}) {
 	if ch == nil {
 		return
 	}
-	// se usa recover para evitar panic si el canal ya está cerrado
+	// Se usa recover para evitar panic si el canal ya está cerrado
 	defer func() { _ = recover() }()
 	close(ch)
 }

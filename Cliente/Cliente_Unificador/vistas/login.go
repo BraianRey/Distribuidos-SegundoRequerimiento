@@ -9,6 +9,7 @@ import (
 	"cliente.local/unificador/controladores"
 )
 
+// Mestra la interfaz de login en consola
 func MostrarLogin(controller *controladores.LoginController) bool {
 	reader := bufio.NewReader(os.Stdin)
 
