@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComunicacionServidorCanciones {
-    private static final String BASE_URL = "http://localhost:3000/";
+    private static final String BASE_URL = "http://localhost:8080/";
     private final CancionesRemoteClient client;
 
     public ComunicacionServidorCanciones(){

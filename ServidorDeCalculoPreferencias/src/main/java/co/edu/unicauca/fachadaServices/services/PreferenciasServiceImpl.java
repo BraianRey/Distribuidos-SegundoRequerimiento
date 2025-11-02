@@ -8,7 +8,7 @@ import co.edu.unicauca.fachadaServices.DTO.PreferenciasDTORespuesta;
 import co.edu.unicauca.fachadaServices.DTO.ReproduccionesDTOEntrada;
 import co.edu.unicauca.fachadaServices.services.calculadorPreferencias.CalculadorPreferencias;
 import co.edu.unicauca.fachadaServices.services.comunicacionCanciones.ComunicacionServidorCanciones;
-import co.edu.unicauca.fachadaServices.services.comunicacionReproducciones.ComunicacionServidorReproducciones;
+import co.edu.unicauca.fachadaServices.services.compComunicacionServidorReproducciones.ComunicacionServidorReproducciones;
 
 public class PreferenciasServiceImpl implements IPreferenciasService {
 	
