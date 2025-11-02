@@ -43,12 +43,12 @@ public class LectorPropiedadesConfig {
      * @return Puerto del servidor (por defecto: 1099)
      */
     public int obtenerPuertoServidor() {
-        String puerto = props.getProperty("servidor.puerto", "1099");
+        String puerto = props.getProperty("servidor.puerto", "2020");
         try {
             return Integer.parseInt(puerto);
         } catch (NumberFormatException e) {
             System.out.println("⚠️  Puerto inválido en configuración, usando 1099 por defecto");
-            return 1099;
+            return 2020;
         }
     }
 }

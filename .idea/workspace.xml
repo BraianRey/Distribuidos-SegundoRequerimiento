@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7200e349-33fb-40eb-807d-8f58bfaf405c" name="Changes" comment="" />
+    <list default="true" id="7200e349-33fb-40eb-807d-8f58bfaf405c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cliente/Cliente_RMI/src/main/java/co/edu/unicauca/configuracion/lector/LectorPropiedadesConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cliente/Cliente_RMI/src/main/java/co/edu/unicauca/configuracion/lector/LectorPropiedadesConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cliente/Cliente_RMI/src/main/java/co/edu/unicauca/fachadaServices/DTO/PreferenciasDTORespuesta.java" beforeDir="false" afterPath="$PROJECT_DIR$/Cliente/Cliente_RMI/src/main/java/co/edu/unicauca/fachadaServices/DTO/PreferenciasDTORespuesta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServidorDeCalculoPreferencias/src/main/java/co/edu/unicauca/configuracion/servicios/ServidorDeObjetos.java" beforeDir="false" afterPath="$PROJECT_DIR$/ServidorDeCalculoPreferencias/src/main/java/co/edu/unicauca/configuracion/servicios/ServidorDeObjetos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServidorDeCalculoPreferencias/src/main/java/co/edu/unicauca/fachadaServices/DTO/PreferenciaIdiomaDTORespuesta.java" beforeDir="false" afterPath="$PROJECT_DIR$/ServidorDeCalculoPreferencias/src/main/java/co/edu/unicauca/fachadaServices/DTO/PreferenciaIdiomaDTORespuesta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServidorDeCalculoPreferencias/src/main/java/co/edu/unicauca/fachadaServices/DTO/PreferenciasDTORespuesta.java" beforeDir="false" afterPath="$PROJECT_DIR$/ServidorDeCalculoPreferencias/src/main/java/co/edu/unicauca/fachadaServices/DTO/PreferenciasDTORespuesta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServidorDeCalculoPreferencias/src/main/java/co/edu/unicauca/fachadaServices/services/componenteCalculaPreferencias/CalculadorPreferencias.java" beforeDir="false" afterPath="$PROJECT_DIR$/ServidorDeCalculoPreferencias/src/main/java/co/edu/unicauca/fachadaServices/services/componenteCalculaPreferencias/CalculadorPreferencias.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServidorDeCalculoPreferencias/src/main/java/co/edu/unicauca/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/ServidorDeCalculoPreferencias/src/main/java/co/edu/unicauca/main/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

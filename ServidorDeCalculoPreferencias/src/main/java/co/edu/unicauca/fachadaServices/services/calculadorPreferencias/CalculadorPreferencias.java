@@ -70,8 +70,8 @@ public class CalculadorPreferencias {
         
         PreferenciasDTORespuesta respuesta = new PreferenciasDTORespuesta();
         respuesta.setIdUsuario(idUsuario);
-        respuesta.setPreferenciasGeneros(preferenciasGeneros);
-        respuesta.setPreferenciasArtistas(preferenciasArtistas);
+        respuesta.setPreferenciasGenero(preferenciasGeneros);
+        respuesta.setPreferenciasArtista(preferenciasArtistas);
 
         return respuesta; 
     }

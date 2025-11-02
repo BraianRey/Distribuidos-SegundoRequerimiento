@@ -11,7 +11,6 @@ import lombok.Data;
 @Data
 public class PreferenciasDTORespuesta implements Serializable {
     private static final long serialVersionUID = 1L;
-    
     private int idUsuario;
     private List<PreferenciaGeneroDTORespuesta> preferenciasGenero;
     private List<PreferenciaArtistaDTORespuesta> preferenciasArtista;
