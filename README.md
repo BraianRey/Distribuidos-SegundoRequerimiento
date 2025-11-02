@@ -1,2 +1,3 @@
 Requisitos
 * ffprobe
+* RabbitMQ

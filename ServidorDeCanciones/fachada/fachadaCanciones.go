@@ -2,28 +2,41 @@ package fachada
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"os"
 	"sort"
 	"strings"
 	"sync"
+	"time"
 
 	"servidor.local/grpc-servidorcanciones/capaFachadaServices"
+	dtos "servidor.local/grpc-servidorcanciones/capaFachadaServices/DTOs"
+	componenteconexioncola "servidor.local/grpc-servidorcanciones/componenteConexionCola"
 	"servidor.local/grpc-servidorcanciones/modelos"
 )
 
 // FachadaCanciones proporciona una interfaz simplificada para acceder a la lógica de negocio relacionada con las canciones y géneros
 type FachadaCanciones struct {
-	Generos   []modelos.Genero  // lista de géneros disponibles
-	Canciones []modelos.Cancion // lista de canciones disponibles
-	filePath  string
-	mu        sync.Mutex
+	Generos      []modelos.Genero  // lista de géneros disponibles
+	Canciones    []modelos.Cancion // lista de canciones disponibles
+	filePath     string
+	mu           sync.Mutex
+	conexionCola *componenteconexioncola.RabbitPublisher
 }
 
-// NuevaFachadaCanciones intenta cargar canciones desde canciones.json en el directorio del servicio.
+// Intenta cargar canciones desde canciones.json en el directorio del servicio.
 // Si el archivo no existe, usa datos embebidos y crea el archivo.
 func NuevaFachadaCanciones() *FachadaCanciones {
 	f := &FachadaCanciones{filePath: "canciones.json"}
+
+	// intentar conectar a RabbitMQ para envío de notificaciones (opcional)
+	if pub, err := componenteconexioncola.NewRabbitPublisher(); err == nil {
+		f.conexionCola = pub
+		log.Printf("Conectado a RabbitMQ para notificaciones")
+	} else {
+		log.Printf("No se pudo conectar a RabbitMQ (opcional): %v", err)
+	}
 
 	// intentar leer géneros desde generos.json
 	if gens, err := capaFachadaServices.LeerGeneros(); err == nil && len(gens) > 0 {
@@ -224,5 +237,40 @@ func (f *FachadaCanciones) RegistrarCancion(c modelos.Cancion) (modelos.Cancion,
 	}
 
 	log.Printf("Canción registrada: %s (ID %d)", c.Titulo, c.ID)
+
+	// Enviar notificación a RabbitMQ (siempre que la conexión exista)
+	if f.conexionCola != nil {
+		// Fecha de registro (ahora)
+		fecha := time.Now().UTC().Format(time.RFC3339)
+
+		// Usar DTO para la representación del mensaje (sin ID, con nombre de genero)
+		dto := dtos.CancionAlmacenarDTOInput{
+			Titulo:        c.Titulo,
+			Artista:       c.Artista,
+			Album:         c.Album,
+			Anio:          c.Anio,
+			Duracion:      c.Duracion,
+			Genero:        c.Genero.Nombre,
+			FechaRegistro: fecha,
+		}
+
+		notif := componenteconexioncola.NotificacionCancion{
+			Titulo:        dto.Titulo,
+			Artista:       dto.Artista,
+			Album:         dto.Album,
+			Anio:          dto.Anio,
+			Duracion:      dto.Duracion,
+			Genero:        dto.Genero,
+			FechaRegistro: dto.FechaRegistro,
+			Mensaje:       fmt.Sprintf("Canción registrada con ID %d", c.ID),
+		}
+
+		if perr := f.conexionCola.PublicarNotificacion(notif); perr != nil {
+			log.Printf("Error publicando notificación a RabbitMQ: %v", perr)
+		} else {
+			log.Printf("Notificación enviada a RabbitMQ para la canción ID %d", c.ID)
+		}
+	}
+
 	return c, nil
 }
