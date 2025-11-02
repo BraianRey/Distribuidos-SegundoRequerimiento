@@ -1,4 +1,4 @@
-package co.edu.unicauca.fachadaServices.services.componenteComunicacionServidorReproducciones;
+package co.edu.unicauca.fachadaServices.services.compComunicacionServidorReproducciones;
 
 import co.edu.unicauca.fachadaServices.DTO.ReproduccionesDTOEntrada;
 import feign.Headers;
