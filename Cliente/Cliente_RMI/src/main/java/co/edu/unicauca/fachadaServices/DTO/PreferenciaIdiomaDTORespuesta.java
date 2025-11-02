@@ -7,14 +7,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * DTO para transferir información de preferencias por género
+ * DTO para transferir información de preferencias por idioma
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PreferenciaGeneroDTORespuesta implements Serializable {
+public class PreferenciaIdiomaDTORespuesta implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    private String nombreGenero;
+    private String nombreIdioma;
     private Integer numeroPreferencias;
 }

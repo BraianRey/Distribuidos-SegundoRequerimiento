@@ -140,7 +140,7 @@ public class Menu {
         System.out.println("   ────────────────────────────");
         if (preferencias.getPreferenciasGenero() != null && !preferencias.getPreferenciasGenero().isEmpty()) {
             preferencias.getPreferenciasGenero().forEach(pref -> {
-                System.out.println("   • " + pref.getGenero() + ": " + pref.getCantidad() + " canciones");
+                System.out.println("   • " + pref.getNombreGenero() + ": " + pref.getNumeroPreferencias() + " canciones");
             });
         } else {
             System.out.println("   (No hay reproducciones registradas)");
@@ -151,7 +151,7 @@ public class Menu {
         System.out.println("   ────────────────────────────");
         if (preferencias.getPreferenciasArtista() != null && !preferencias.getPreferenciasArtista().isEmpty()) {
             preferencias.getPreferenciasArtista().forEach(pref -> {
-                System.out.println("   • " + pref.getArtista() + ": " + pref.getCantidad() + " canciones");
+                System.out.println("   • " + pref.getNombreArtista() + ": " + pref.getNumeroPreferencias() + " canciones");
             });
         } else {
             System.out.println("   (No hay reproducciones registradas)");
@@ -162,7 +162,7 @@ public class Menu {
         System.out.println("   ────────────────────────────");
         if (preferencias.getPreferenciasIdioma() != null && !preferencias.getPreferenciasIdioma().isEmpty()) {
             preferencias.getPreferenciasIdioma().forEach(pref -> {
-                System.out.println("   • " + pref.getIdioma() + ": " + pref.getCantidad() + " canciones");
+                System.out.println("   • " + pref.getNombreIdioma() + ": " + pref.getNumeroPreferencias() + " canciones");
             });
         } else {
             System.out.println("   (No hay reproducciones registradas)");
