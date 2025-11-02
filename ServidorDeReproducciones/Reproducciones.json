@@ -1,3 +1,22 @@
-Id_usuario
-Cancion
-Hora & Fecha
+[
+  {
+    "id": 1,
+    "idUsuario": 1,
+    "idCancion": 1,
+    "titulo": "Believer",
+    "artista": "Imagine Dragons",
+    "genero": "Rock",
+    "idioma": "Inglés",
+    "fechaHora": "2025-11-01T10:30:00Z"
+  },
+  {
+    "id": 2,
+    "idUsuario": 1,
+    "idCancion": 2,
+    "titulo": "Don't You Worry Child",
+    "artista": "Swedish House Mafia",
+    "genero": "EDM",
+    "idioma": "Inglés",
+    "fechaHora": "2025-11-01T11:15:00Z"
+  }
+]
