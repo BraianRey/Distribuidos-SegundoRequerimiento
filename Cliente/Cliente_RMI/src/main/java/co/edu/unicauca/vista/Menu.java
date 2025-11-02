@@ -42,8 +42,9 @@ public class Menu {
             System.out.println("1. Consultar preferencias de usuario");
             System.out.println("2. Salir");
             System.out.println("========================================");
+            System.out.print("Seleccione una opción: ");
             
-            opcion = UtilidadesConsola.leerEntero("Seleccione una opción: ");
+            opcion = UtilidadesConsola.leerEntero();
             
             switch (opcion) {
                 case 1:
@@ -104,7 +105,8 @@ public class Menu {
             System.out.println("   CONSULTAR PREFERENCIAS MUSICALES");
             System.out.println("========================================");
             
-            int idUsuario = UtilidadesConsola.leerEntero("Ingrese el ID del usuario: ");
+            System.out.print("Ingrese el ID del usuario: ");
+            int idUsuario = UtilidadesConsola.leerEntero();
             
             System.out.println("\n⏳ Consultando preferencias...");
             System.out.println("   (El servidor está consultando canciones y reproducciones)");
