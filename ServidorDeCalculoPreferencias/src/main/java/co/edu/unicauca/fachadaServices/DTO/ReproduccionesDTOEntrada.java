@@ -8,8 +8,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ReproduccionesDTOEntrada {
-   private Integer idUsuario;
-   private Integer idCancion;
+    private Integer id;
+    private Integer idUsuario;
+    private Integer idCancion;
+    private String titulo;
+    private String artista;
+    private String genero;
+    private String idioma;
 }
-
-
